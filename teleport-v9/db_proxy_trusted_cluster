@@ -1,0 +1,16 @@
+022-02-24T18:50:45Z DEBU [RBAC]      Access to db "steve-redshift" denied, no allow rule matched; [role=access, match(matchers=<nil>) role=editor, match(label=no match, empty selector) role=auditor, match(label=no match, empty selector)
+~                              │role=default-implicit-role, match(label=no match, empty selector)] services/role.go:1868
+
+root cluster RABC from:
+    db_names:
+    - '{{internal.db_names}}'
+    db_users:
+    - '{{internal.db_users}}'
+
+to:
+    db_names:
+    - '*'
+    db_users:
+    - '*'
+
+more details: https://goteleport.com/docs/ver/9.0/setup/admin/trustedclusters/#rbac

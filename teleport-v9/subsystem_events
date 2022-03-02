@@ -1,0 +1,62 @@
+{
+  "addr.local": "localhost:22",
+  "addr.remote": "72.53.192.94:51920",
+  "cluster_name": "teleport.dev.aws.stevexin.me",
+  "code": "T2006I",
+  "ei": 2147483646,
+  "event": "session.data",
+  "login": "root",
+  "namespace": "default",
+  "rx": 8420,
+  "server_id": "da112a26-ad35-4472-b436-9234283c56c6",
+  "sid": "",
+  "time": "2022-02-24T19:54:22.063Z",
+  "tx": 5809,
+  "uid": "b1e29e75-f520-41de-b7a0-87d47afcb813",
+  "user": "STeve"
+}
+{
+  "addr.local": "127.0.0.1:58326",
+  "addr.remote": "127.0.0.1:22",
+  "cluster_name": "teleport.dev.aws.stevexin.me",
+  "code": "T3001I",
+  "ei": 0,
+  "event": "subsystem",
+  "exitError": "",
+  "login": "root",
+  "name": "sftp",
+  "time": "2022-02-24T19:54:22.062Z",
+  "uid": "67b6334a-e0c1-4447-96db-5d091677a1aa",
+  "user": "STeve"
+}
+
+{
+  "addr.remote": "72.53.192.94:51738",
+  "cluster_name": "teleport.dev.aws.stevexin.me",
+  "code": "T2006I",
+  "ei": 2147483646,
+  "event": "session.data",
+  "login": "root",
+  "namespace": "default",
+  "rx": 3992,
+  "server_id": "da112a26-ad35-4472-b436-9234283c56c6",
+  "sid": "",
+  "time": "2022-02-24T19:37:27.093Z",
+  "tx": 5393,
+  "uid": "d3296e76-b1e5-4fb5-90cd-eda2b26a7d71",
+  "user": "STeve"
+}
+{
+  "addr.local": "10.0.0.197:443",
+  "addr.remote": "3.99.184.2:43970",
+  "cluster_name": "teleport.dev.aws.stevexin.me",
+  "code": "T3001E",
+  "ei": 0,
+  "event": "subsystem",
+  "exitError": "ssh: subsystem request failed",
+  "login": "root",
+  "name": "sftp",
+  "time": "2022-02-24T19:37:27.092Z",
+  "uid": "956ecb7d-95a7-4934-a743-64f2d6d237a9",
+  "user": "STeve"
+}
