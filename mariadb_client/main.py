@@ -9,8 +9,35 @@ import sys
 
 
 key_path = "/Users/stevehuang/.tsh/keys/teleport.dev.aws.stevexin.me/STeve" 
-ca_path  ="/Users/stevehuang/.tsh/keys/teleport.dev.aws.stevexin.me/certs.pem"
+ca_path  ="/Users/stevehuang/.tsh/keys/teleport.dev.aws.stevexin.me/cas/teleport.dev.aws.stevexin.me.pem"
 cert_path= "/Users/stevehuang/.tsh/keys/teleport.dev.aws.stevexin.me/STeve-db/teleport.dev.aws.stevexin.me/self-hosted-mariadb-x509.pem"
+
+def update(cur):
+    cur.execute("DELETE FROM users WHERE age < 5")
+    cur.execute("INSERT INTO users VALUES (?, ?)", ("macy", 4))
+    cur.executemany("INSERT INTO users VALUES (?, ?)", [("miki", 3), ('mini', 2)])
+    cur.execute("UPDATE users SET age=? WHERE name=?",(1, "macy"))
+    cur.execute("SELECT age from users WHERE name=? and age < ?", ("macy", 100))
+    print(cur.fetchall())
+
+def index(cur):
+    cur.execute("CREATE INDEX by_age ON users (age)")
+    cur.execute("DROP INDEX by_age ON users (age)")
+
+def select(cur):
+    cur.execute("SELECT * from users WHERE age < 100")
+    print("--- all users ---")
+    print(cur.fetchall())
+
+
+def kill(conn, cur, id):
+    cur.execute("SHOW PROCESSLIST")
+    for row in cur:
+        tid = row[0]
+        print("process {} found".format(tid))
+
+    conn.kill(id)
+    print("process {} killed".format(id))
 
 try:
     conn = mariadb.connect(
@@ -27,26 +54,10 @@ try:
     print(conn.server_info)
 
     cur = conn.cursor()
-
-    cur.execute("DELETE FROM users WHERE age < 5")
-
-    cur.execute("INSERT INTO users VALUES (?, ?)", ("macy", 4))
-
-    cur.executemany("INSERT INTO users VALUES (?, ?)", [("miki", 3), ('mini', 2)])
-
-    cur.execute("UPDATE users SET age=? WHERE name=?",(1, "macy"))
-
-    cur.execute("SELECT age from users WHERE name=? and age < ?", ("macy", 100))
-    print(cur.fetchall())
-    print(cur.fetchall())
-
-    cur.execute("SELECT * from users WHERE age < 100")
-    print("--- all users ---")
-    print(cur.fetchall())
-
-    cur.execute("CREATE INDEX by_age ON users (age)")
-    cur.execute("DROP INDEX by_age ON users (age)")
-
+    #update(cur)
+    #index(cur)
+    select(cur)
+    kill(conn, cur, 10)
 
     conn.close()
 except mariadb.Error as e:
