@@ -39,6 +39,9 @@ def kill(conn, cur, id):
     conn.kill(id)
     print("process {} killed".format(id))
 
+def select_db(conn, database):
+    conn.select_db(database=database)
+
 try:
     conn = mariadb.connect(
             host="127.0.0.1",
@@ -58,6 +61,7 @@ try:
     #index(cur)
     select(cur)
     kill(conn, cur, 10)
+    select_db(conn, "test")
 
     conn.close()
 except mariadb.Error as e:
